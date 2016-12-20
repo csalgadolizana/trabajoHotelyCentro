@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Usuario" table="usuario" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="15" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="15" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="10" not-null="true" />
+        </property>
+        <set name="ejecutivos" table="ejecutivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Ejecutivo" />
+        </set>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Cliente" />
+        </set>
+        <set name="administradors" table="administrador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Administrador" />
+        </set>
+    </class>
+</hibernate-mapping>

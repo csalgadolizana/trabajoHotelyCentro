@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Sucursal" table="sucursal" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresa" class="Entity.Empresa" fetch="select">
+            <column name="id_empresa" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="rutaImagen" type="string">
+            <column name="ruta_imagen" length="80" />
+        </property>
+        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sucursal" />
+            </key>
+            <one-to-many class="Entity.Calificacion" />
+        </set>
+        <set name="hotels" table="hotel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sucursal" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Hotel" />
+        </set>
+        <set name="centroeventoses" table="centroeventos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sucursal" />
+            </key>
+            <one-to-many class="Entity.Centroeventos" />
+        </set>
+    </class>
+</hibernate-mapping>

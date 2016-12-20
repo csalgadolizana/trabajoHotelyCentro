@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Espacio" table="espacio" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="metrosCuadrados" type="int">
+            <column name="metrosCuadrados" not-null="true" />
+        </property>
+        <property name="tienePiscina" type="boolean">
+            <column name="tienePiscina" not-null="true" />
+        </property>
+        <property name="cantMaximaPersonas" type="int">
+            <column name="cantMaximaPersonas" not-null="true" />
+        </property>
+        <property name="precioHora" type="int">
+            <column name="precioHora" not-null="true" />
+        </property>
+        <property name="tieneEscenario" type="boolean">
+            <column name="tieneEscenario" not-null="true" />
+        </property>
+        <property name="accesoDiscapacitados" type="boolean">
+            <column name="accesoDiscapacitados" not-null="true" />
+        </property>
+        <property name="estaActivo" type="int">
+            <column name="estaActivo" not-null="true" />
+        </property>
+        <property name="rutaImagen" type="string">
+            <column name="ruta_imagen" length="80" not-null="true" />
+        </property>
+        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_espacio" />
+            </key>
+            <one-to-many class="Entity.Calificacion" />
+        </set>
+        <set name="reservacions" table="reservacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_espacio" unique="true" />
+            </key>
+            <one-to-many class="Entity.Reservacion" />
+        </set>
+    </class>
+</hibernate-mapping>

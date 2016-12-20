@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Cliente" table="cliente" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="idPersona" type="int">
+            <column name="id_persona" />
+            <generator class="foreign">
+                <param name="property">personaById</param>
+            </generator>
+        </id>
+        <many-to-one name="personaByRutPersona" class="Entity.Persona" fetch="select">
+            <column name="rut_persona" not-null="true" unique="true" />
+        </many-to-one>
+        <one-to-one name="personaById" class="Entity.Persona" constrained="true"></one-to-one>
+        <many-to-one name="usuario" class="Entity.Usuario" fetch="select">
+            <column name="id_usuario" not-null="true" />
+        </many-to-one>
+        <property name="numeroTarjeta" type="java.lang.Integer">
+            <column name="numeroTarjeta" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="10" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="20" />
+        </property>
+        <property name="comuna" type="string">
+            <column name="comuna" length="20" />
+        </property>
+        <property name="calleNumero" type="string">
+            <column name="calleNumero" length="30" />
+        </property>
+        <property name="estaActivo" type="int">
+            <column name="estaActivo" not-null="true" />
+        </property>
+        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Calificacion" />
+        </set>
+        <set name="reservacions" table="reservacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rut_cliente" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Reservacion" />
+        </set>
+    </class>
+</hibernate-mapping>

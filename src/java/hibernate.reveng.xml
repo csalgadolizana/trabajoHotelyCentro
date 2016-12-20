@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="hoteles_eventos"/>
+  <table-filter match-name="persona"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="sucursal"/>
+  <table-filter match-name="habitacion"/>
+  <table-filter match-name="centroeventos"/>
+  <table-filter match-name="ejecutivo"/>
+  <table-filter match-name="reservacion"/>
+  <table-filter match-name="empresa"/>
+  <table-filter match-name="hotel"/>
+  <table-filter match-name="espacio"/>
+  <table-filter match-name="administrador"/>
+  <table-filter match-name="calificacion"/>
+</hibernate-reverse-engineering>

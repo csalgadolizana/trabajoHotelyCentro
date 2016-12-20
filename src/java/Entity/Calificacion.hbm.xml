@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Calificacion" table="calificacion" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="idCalificacion" type="java.lang.Integer">
+            <column name="id_calificacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="centroeventos" class="Entity.Centroeventos" fetch="select">
+            <column name="id_centro_eventos" />
+        </many-to-one>
+        <many-to-one name="cliente" class="Entity.Cliente" fetch="select">
+            <column name="id_cliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ejecutivo" class="Entity.Ejecutivo" fetch="select">
+            <column name="id_ejecutivo" />
+        </many-to-one>
+        <many-to-one name="empresa" class="Entity.Empresa" fetch="select">
+            <column name="id_empresa" />
+        </many-to-one>
+        <many-to-one name="espacio" class="Entity.Espacio" fetch="select">
+            <column name="id_espacio" />
+        </many-to-one>
+        <many-to-one name="habitacion" class="Entity.Habitacion" fetch="select">
+            <column name="id_habitacion" />
+        </many-to-one>
+        <many-to-one name="hotel" class="Entity.Hotel" fetch="select">
+            <column name="id_hotel" />
+        </many-to-one>
+        <many-to-one name="sucursal" class="Entity.Sucursal" fetch="select">
+            <column name="id_sucursal" />
+        </many-to-one>
+        <property name="comentario" type="string">
+            <column name="comentario" length="140" not-null="true" />
+        </property>
+        <property name="cantidadEstrellas" type="int">
+            <column name="cantidad_estrellas" not-null="true" />
+        </property>
+        <property name="fechaComentario" type="timestamp">
+            <column name="fecha_comentario" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

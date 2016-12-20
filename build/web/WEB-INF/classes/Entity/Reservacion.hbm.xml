@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-11-2016 13:51:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Reservacion" table="reservacion" catalog="hoteles_eventos" optimistic-lock="version">
+        <id name="idReservacion" type="java.lang.Integer">
+            <column name="id_reservacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="Entity.Cliente" fetch="select">
+            <column name="rut_cliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ejecutivo" class="Entity.Ejecutivo" fetch="select">
+            <column name="id_ejecutivo" />
+        </many-to-one>
+        <many-to-one name="espacio" class="Entity.Espacio" fetch="select">
+            <column name="id_espacio" unique="true" />
+        </many-to-one>
+        <many-to-one name="habitacion" class="Entity.Habitacion" fetch="select">
+            <column name="numero_habitacion" unique="true" />
+        </many-to-one>
+        <property name="fechaReserva" type="date">
+            <column name="fecha_reserva" length="10" />
+        </property>
+        <property name="horaReserva" type="time">
+            <column name="hora_reserva" length="8" />
+        </property>
+        <property name="horasReservadas" type="java.lang.Integer">
+            <column name="horas_reservadas" />
+        </property>
+        <property name="estaAprobada" type="boolean">
+            <column name="esta_aprobada" not-null="true" />
+        </property>
+        <property name="precioTotal" type="int">
+            <column name="precio_total" not-null="true" />
+        </property>
+        <property name="estaPagado" type="boolean">
+            <column name="esta_pagado" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
